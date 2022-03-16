@@ -1,0 +1,32 @@
+* {
+  box-sizing: border-box;
+  margin: 0px;
+  padding: 0px;
+}
+
+#grid {
+  background-color: aquamarine;
+  width: 500px;
+  height: 500px;
+  margin: 50px auto;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.cellStyle {
+  height: calc(100% / 10);
+  width: calc(100% / 10);
+  border: 2px solid black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.bg-color-yellow {
+  background-color: yellow;
+}
+
+.buttons {
+  margin-top: 50px;
+  text-align: center;
+}
