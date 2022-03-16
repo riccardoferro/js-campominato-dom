@@ -8,6 +8,8 @@
 // Il computer deve generare 16 numeri casuali nello stesso range della difficoltà prescelta: le bombe.
 // I numeri nella lista delle bombe non possono essere duplicati.
 
+//***** FINO A QUI FATTO *******/
+
 // In seguito l'utente clicca su una cella: se il numero è presente nella lista dei numeri generati - abbiamo calpestato una bomba - la cella si colora di rosso e la partita termina,
 // altrimenti la cella cliccata si colora di azzurro e l'utente può continuare a cliccare sulle altre celle.
 // La partita termina quando il giocatore clicca su una bomba o raggiunge il numero massimo possibile di numeri consentiti.
@@ -70,6 +72,8 @@ function randomNumber(min, max) {
 
 console.log("JS OK");
 
+let punteggio = 0;
+
 // Create the grid
 
 const grid = document.getElementById("grid");
@@ -81,26 +85,6 @@ const totalCells = 100;
 
 const posBombs = [];
 
-//cicle for each cell
-for (let i = 0; i < totalCells; i++) {
-  //make the cell
-  const cell = makeTheCell();
-
-  // we gonna put the cell in the grid
-
-  grid.appendChild(cell);
-
-  // insert numbers normally in the cell
-
-  addNumbers(cell, i);
-
-  //event where if click a cell the bg-color change
-
-  cell.addEventListener("click", function () {
-    cell.classList.toggle("bg-color-yellow");
-  });
-}
-
 //insert bombs's positions in the array
 
 while (posBombs.length < 16) {
@@ -111,4 +95,40 @@ while (posBombs.length < 16) {
 }
 
 console.log(posBombs);
+
+//cicle for each cell
+for (let i = 0; i < totalCells; i++) {
+  //make the cell
+  const cell = makeTheCell();
+
+  //insert id in the cells
+  cell.id = "cell-" + (i + 1);
+
+  // we gonna put the cell in the grid
+
+  grid.appendChild(cell);
+
+  // insert numbers normally in the cell
+
+  addNumbers(cell, i);
+}
+
+//event where if click the cell that have the number in the array the bg-color became red else light-blue
+
+for (let i = 1; i <= totalCells; i++) {
+  //if bombs bg color red else bg color light blue
+
+  const cell = document.getElementById("cell-" + i);
+  cell.addEventListener("click", () => {
+    if (posBombs.includes(i)) {
+      cell.classList.add("bg-color-red");
+      alert("end game, you lose");
+      console.log(punteggio);
+    } else {
+      cell.classList.add("bg-color-light-blue");
+      punteggio = punteggio + 10;
+    }
+  });
+}
+
 /******************* CODE MAIN  ****************/
