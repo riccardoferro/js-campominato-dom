@@ -66,6 +66,13 @@ function randomNumber(min, max) {
   return Math.floor(Math.random() * range + min);
 }
 
+//null all clicks
+function nullAllClicks(totCells) {
+  for (let i = 1; i <= totCells; i++) {
+    const cell = document.getElementById("cell-" + i);
+    cell.classList.add("noClick");
+  }
+}
 /************************ FUNCTIONS */
 
 /******************* CODE MAIN  ****************/
@@ -122,8 +129,9 @@ for (let i = 1; i <= totalCells; i++) {
   cell.addEventListener("click", () => {
     if (posBombs.includes(i)) {
       cell.classList.add("bg-color-red");
-      alert("end game, you lose");
+      console.log("partita terminata");
       console.log(punteggio);
+      nullAllClicks(totalCells);
     } else {
       cell.classList.add("bg-color-light-blue");
       punteggio = punteggio + 10;
