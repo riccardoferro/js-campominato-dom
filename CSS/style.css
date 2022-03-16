@@ -38,3 +38,7 @@
 .bg-color-light-blue {
   background-color: lightblue;
 }
+
+.noClick {
+  pointer-events: none;
+}
