@@ -30,3 +30,11 @@
   margin-top: 50px;
   text-align: center;
 }
+
+.bg-color-red {
+  background-color: red;
+}
+
+.bg-color-light-blue {
+  background-color: lightblue;
+}
