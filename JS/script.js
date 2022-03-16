@@ -79,14 +79,16 @@ function nullAllClicks(totCells) {
 
 console.log("JS OK");
 
-let punteggio = 0;
-
 // Create the grid
 
 const grid = document.getElementById("grid");
 
 //total cells we gonna make in the grid
 const totalCells = 100;
+
+let punteggio = 0;
+
+const maxPunteggio = 10 * (totalCells - 16);
 
 //array of bombs
 
@@ -95,7 +97,7 @@ const posBombs = [];
 //insert bombs's positions in the array
 
 while (posBombs.length < 16) {
-  const number = randomNumber(1, 100);
+  const number = randomNumber(1, totalCells);
   if (!posBombs.includes(number)) {
     posBombs.push(number);
   }
@@ -129,12 +131,17 @@ for (let i = 1; i <= totalCells; i++) {
   cell.addEventListener("click", () => {
     if (posBombs.includes(i)) {
       cell.classList.add("bg-color-red");
-      console.log("partita terminata");
+      console.log("partita terminata, HAI PERSO!");
       console.log(punteggio);
       nullAllClicks(totalCells);
     } else {
       cell.classList.add("bg-color-light-blue");
       punteggio = punteggio + 10;
+    }
+    if (punteggio === maxPunteggio) {
+      console.log("partita terminata, HAI VINTO!");
+      console.log(punteggio);
+      nullAllClicks(totalCells);
     }
   });
 }
