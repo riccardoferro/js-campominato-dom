@@ -16,8 +16,13 @@
 
 // Al termine della partita il software deve comunicare il punteggio, cioè il numero di volte che l’utente ha cliccato su una cella che non era una bomba.
 
+//***** FINO A QUI FATTO *******/
+
 // BONUS:
 // 1- quando si clicca su una bomba e finisce la partita, evitare che si possa cliccare su altre celle
+
+//***** FINO A QUI FATTO *******/
+
 // 2- quando si clicca su una bomba e finisce la partita, il software scopre tutte le bombe nascoste
 // 3- L'utente indica un livello di difficoltà in base al quale viene generata una griglia di gioco quadrata, in cui ogni cella contiene un numero tra quelli compresi in un range:
 // con difficoltà 1 => tra 1 e 100
@@ -73,6 +78,19 @@ function nullAllClicks(totCells) {
     cell.classList.add("noClick");
   }
 }
+
+//insert bombs's positions in the array
+function arrayBombs(totCells) {
+  const posBombs = [];
+
+  while (posBombs.length < 16) {
+    const number = randomNumber(1, totalCells);
+    if (!posBombs.includes(number)) {
+      posBombs.push(number);
+    }
+  }
+  return posBombs;
+}
 /************************ FUNCTIONS */
 
 /******************* CODE MAIN  ****************/
@@ -86,22 +104,14 @@ const grid = document.getElementById("grid");
 //total cells we gonna make in the grid
 const totalCells = 100;
 
+//score
 let punteggio = 0;
 
+//max-score
 const maxPunteggio = 10 * (totalCells - 16);
 
 //array of bombs
-
-const posBombs = [];
-
-//insert bombs's positions in the array
-
-while (posBombs.length < 16) {
-  const number = randomNumber(1, totalCells);
-  if (!posBombs.includes(number)) {
-    posBombs.push(number);
-  }
-}
+const posBombs = arrayBombs(totalCells);
 
 console.log(posBombs);
 
