@@ -111,6 +111,39 @@ function makeGrid(totCells) {
     addNumbers(cell, i);
   }
 }
+
+function boomOrNot(totCells) {
+  //event where if click the cell that have the number in the array the bg-color became red else light-blue
+
+  for (let i = 1; i <= totCells; i++) {
+    //score
+    let punteggio = 0;
+
+    //max-score
+    const maxPunteggio = 10 * (totalCells - 16);
+
+    const cell = document.getElementById("cell-" + i);
+
+    //if bombs bg color red else bg color light blue
+
+    cell.addEventListener("click", () => {
+      if (posBombs.includes(i)) {
+        cell.classList.add("bg-color-red");
+        console.log("partita terminata, HAI PERSO!");
+        console.log(punteggio);
+        nullAllClicks(totCells);
+      } else {
+        cell.classList.add("bg-color-light-blue");
+        punteggio = punteggio + 10;
+      }
+      if (punteggio === maxPunteggio) {
+        console.log("partita terminata, HAI VINTO!");
+        console.log(punteggio);
+        nullAllClicks(totCells);
+      }
+    });
+  }
+}
 /************************ FUNCTIONS */
 
 /******************* CODE MAIN  ****************/
@@ -122,42 +155,15 @@ console.log("JS OK");
 //total cells we gonna make in the grid
 const totalCells = 100;
 
-//score
-let punteggio = 0;
-
-//max-score
-const maxPunteggio = 10 * (totalCells - 16);
+//make a grid with 100 cells
+makeGrid(totalCells);
 
 //array of bombs
 const posBombs = arrayBombs(totalCells);
 
 console.log(posBombs);
 
-//make a grid with 100 cells
-makeGrid(totalCells);
-
-//event where if click the cell that have the number in the array the bg-color became red else light-blue
-
-for (let i = 1; i <= totalCells; i++) {
-  //if bombs bg color red else bg color light blue
-
-  const cell = document.getElementById("cell-" + i);
-  cell.addEventListener("click", () => {
-    if (posBombs.includes(i)) {
-      cell.classList.add("bg-color-red");
-      console.log("partita terminata, HAI PERSO!");
-      console.log(punteggio);
-      nullAllClicks(totalCells);
-    } else {
-      cell.classList.add("bg-color-light-blue");
-      punteggio = punteggio + 10;
-    }
-    if (punteggio === maxPunteggio) {
-      console.log("partita terminata, HAI VINTO!");
-      console.log(punteggio);
-      nullAllClicks(totalCells);
-    }
-  });
-}
+//check if you have click a bomb
+boomOrNot(totalCells);
 
 /******************* CODE MAIN  ****************/
