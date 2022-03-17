@@ -91,6 +91,26 @@ function arrayBombs(totCells) {
   }
   return posBombs;
 }
+
+function makeGrid(totCells) {
+  const grid = document.getElementById("grid");
+  //cicle for each cell
+  for (let i = 0; i < totalCells; i++) {
+    //make the cell
+    const cell = makeTheCell();
+
+    //insert id in the cells
+    cell.id = "cell-" + (i + 1);
+
+    // we gonna put the cell in the grid
+
+    grid.appendChild(cell);
+
+    // insert numbers normally in the cell
+
+    addNumbers(cell, i);
+  }
+}
 /************************ FUNCTIONS */
 
 /******************* CODE MAIN  ****************/
@@ -98,8 +118,6 @@ function arrayBombs(totCells) {
 console.log("JS OK");
 
 // Create the grid
-
-const grid = document.getElementById("grid");
 
 //total cells we gonna make in the grid
 const totalCells = 100;
@@ -115,22 +133,8 @@ const posBombs = arrayBombs(totalCells);
 
 console.log(posBombs);
 
-//cicle for each cell
-for (let i = 0; i < totalCells; i++) {
-  //make the cell
-  const cell = makeTheCell();
-
-  //insert id in the cells
-  cell.id = "cell-" + (i + 1);
-
-  // we gonna put the cell in the grid
-
-  grid.appendChild(cell);
-
-  // insert numbers normally in the cell
-
-  addNumbers(cell, i);
-}
+//make a grid with 100 cells
+makeGrid(totalCells);
 
 //event where if click the cell that have the number in the array the bg-color became red else light-blue
 
