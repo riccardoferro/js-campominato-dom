@@ -24,6 +24,9 @@
 //***** FINO A QUI FATTO *******/
 
 // 2- quando si clicca su una bomba e finisce la partita, il software scopre tutte le bombe nascoste
+
+//***** FINO A QUI FATTO *******/
+
 // 3- L'utente indica un livello di difficoltà in base al quale viene generata una griglia di gioco quadrata, in cui ogni cella contiene un numero tra quelli compresi in un range:
 // con difficoltà 1 => tra 1 e 100
 // con difficoltà 2 => tra 1 e 81
@@ -50,12 +53,13 @@ Second part:
 /************************ FUNCTIONS */
 
 //these function make the cells
-function makeTheCell() {
+function makeTheCell(levelClass) {
   const item = document.createElement("div");
 
   // add the class cellStyle in each div cell
 
   item.classList.add("cellStyle");
+  item.classList.add("levelClass");
 
   return item;
 }
@@ -82,7 +86,7 @@ function arrayBombs(totCells) {
   const posBombs = [];
 
   while (posBombs.length < 16) {
-    const number = randomNumber(1, totalCells);
+    const number = randomNumber(1, totCells);
     if (!posBombs.includes(number)) {
       posBombs.push(number);
     }
@@ -91,15 +95,15 @@ function arrayBombs(totCells) {
 }
 
 //make the grid
-function makeGrid(totCells) {
+function makeGrid(totCells, levelClass) {
   const grid = document.getElementById("grid");
 
   grid.innerHTML = "";
 
   //cicle for each cell
-  for (let i = 0; i < totalCells; i++) {
+  for (let i = 0; i < totCells; i++) {
     //make the cell
-    const cell = makeTheCell();
+    const cell = makeTheCell(levelClass);
 
     //insert id in the cells
     cell.id = "cell-" + (i + 1);
@@ -163,20 +167,27 @@ function showAllBombs(bombsToShow) {
 
 console.log("JS OK");
 
+const buttonEasy = document.getElementById("easy");
+
+const buttonMedium = document.getElementById("medium");
+
+const buttonHard = document.getElementById("hard");
+
+buttonEasy.addEventListener("click", () => makeGrid(100, "easy"));
 // Create the grid
 
-//total cells we gonna make in the grid
-const totalCells = 100;
+// //total cells we gonna make in the grid
+// const totalCells = 100;
 
-//make a grid with 100 cells
-makeGrid(totalCells);
+// //make a grid with 100 cells
+// makeGrid(totalCells);
 
 //array of bombs
-const posBombs = arrayBombs(totalCells);
+const posBombs = arrayBombs(100);
 
 console.log(posBombs);
 
 //check if you have click a bomb
-boomOrNot(totalCells);
+boomOrNot(100);
 
 /******************* CODE MAIN  ****************/
