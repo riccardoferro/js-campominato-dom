@@ -120,7 +120,8 @@ function boomOrNot(totCells) {
   let punteggio = 0;
 
   //max-score
-  const maxPunteggio = 10 * (totalCells - 16);
+  const maxPunteggio = 10 * (totCells - 16);
+
   for (let i = 1; i <= totCells; i++) {
     const cell = document.getElementById("cell-" + i);
 
@@ -132,6 +133,7 @@ function boomOrNot(totCells) {
         console.log("partita terminata, HAI PERSO!");
         console.log(punteggio);
         nullAllClicks(totCells);
+        showAllBombs(posBombs);
       } else {
         cell.classList.add("bg-color-light-blue");
         punteggio = punteggio + 10;
@@ -142,6 +144,17 @@ function boomOrNot(totCells) {
         nullAllClicks(totCells);
       }
     });
+  }
+}
+
+function showAllBombs(bombsToShow) {
+  const totCells = document.querySelectorAll(".cellStyle");
+
+  for (let i = 0; i < totCells.length; i++) {
+    if (bombsToShow.includes(i + 1)) {
+      const bombCell = totCells[i];
+      bombCell.classList.add("bg-color-red");
+    }
   }
 }
 /************************ FUNCTIONS */
