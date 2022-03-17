@@ -73,10 +73,8 @@ function randomNumber(min, max) {
 
 //null all clicks
 function nullAllClicks(totCells) {
-  for (let i = 1; i <= totCells; i++) {
-    const cell = document.getElementById("cell-" + i);
-    cell.classList.add("noClick");
-  }
+  const grid = document.getElementById("grid");
+  grid.classList.add("noClick");
 }
 
 //insert bombs's positions in the array
@@ -95,6 +93,9 @@ function arrayBombs(totCells) {
 //make the grid
 function makeGrid(totCells) {
   const grid = document.getElementById("grid");
+
+  grid.innerHTML = "";
+
   //cicle for each cell
   for (let i = 0; i < totalCells; i++) {
     //make the cell
