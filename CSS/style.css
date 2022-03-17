@@ -15,12 +15,25 @@
 }
 
 .cellStyle {
-  height: calc(100% / 10);
-  width: calc(100% / 10);
   border: 2px solid black;
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.cell.easy {
+  height: calc(100% / 10);
+  width: calc(100% / 10);
+}
+
+.cell.medium {
+  height: calc(100% / 9);
+  width: calc(100% / 9);
+}
+
+.cell.hard {
+  height: calc(100% / 7);
+  width: calc(100% / 7);
 }
 
 .bg-color-yellow {
