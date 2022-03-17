@@ -92,6 +92,7 @@ function arrayBombs(totCells) {
   return posBombs;
 }
 
+//make the grid
 function makeGrid(totCells) {
   const grid = document.getElementById("grid");
   //cicle for each cell
@@ -112,16 +113,14 @@ function makeGrid(totCells) {
   }
 }
 
+//event where if click the cell that have the number in the array the bg-color became red else light-blue
 function boomOrNot(totCells) {
-  //event where if click the cell that have the number in the array the bg-color became red else light-blue
+  //score
+  let punteggio = 0;
 
+  //max-score
+  const maxPunteggio = 10 * (totalCells - 16);
   for (let i = 1; i <= totCells; i++) {
-    //score
-    let punteggio = 0;
-
-    //max-score
-    const maxPunteggio = 10 * (totalCells - 16);
-
     const cell = document.getElementById("cell-" + i);
 
     //if bombs bg color red else bg color light blue
