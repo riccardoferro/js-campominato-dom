@@ -55,11 +55,10 @@ Second part:
 //these function make the cells
 function makeTheCell(levelClass) {
   const item = document.createElement("div");
-
   // add the class cellStyle in each div cell
 
   item.classList.add("cellStyle");
-  item.classList.add("levelClass");
+  item.classList.add(levelClass);
 
   return item;
 }
@@ -119,7 +118,7 @@ function makeGrid(totCells, levelClass) {
 }
 
 //event where if click the cell that have the number in the array the bg-color became red else light-blue
-function boomOrNot(totCells) {
+function boomOrNot(totCells, posBombs) {
   //score
   let punteggio = 0;
 
@@ -173,21 +172,29 @@ const buttonMedium = document.getElementById("medium");
 
 const buttonHard = document.getElementById("hard");
 
-buttonEasy.addEventListener("click", () => makeGrid(100, "easy"));
-// Create the grid
+const buttonReset = document.getElementById("reset");
 
-// //total cells we gonna make in the grid
-// const totalCells = 100;
+buttonEasy.addEventListener("click", () => startGame(100, "easy"));
 
-// //make a grid with 100 cells
-// makeGrid(totalCells);
+buttonMedium.addEventListener("click", () => startGame(81, "medium"));
 
-//array of bombs
-const posBombs = arrayBombs(100);
+buttonHard.addEventListener("click", () => startGame(49, "hard"));
 
-console.log(posBombs);
+buttonReset.addEventListener("click", () => {
+  const grid = document.getElementById("grid");
+  grid.classList.remove("noClick");
+  grid.innerHTML = "";
+});
 
-//check if you have click a bomb
-boomOrNot(100);
+function startGame(totCells, level) {
+  // Create the grid
+  makeGrid(totCells, level);
 
+  //array of bombs
+  const posBombs = arrayBombs(totCells);
+  console.log(posBombs);
+
+  //check if you have click a bomb
+  boomOrNot(totCells, posBombs);
+}
 /******************* CODE MAIN  ****************/
