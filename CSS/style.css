@@ -21,17 +21,17 @@
   justify-content: center;
 }
 
-.cell.easy {
+.cellStyle.easy {
   height: calc(100% / 10);
   width: calc(100% / 10);
 }
 
-.cell.medium {
+.cellStyle.medium {
   height: calc(100% / 9);
   width: calc(100% / 9);
 }
 
-.cell.hard {
+.cellStyle.hard {
   height: calc(100% / 7);
   width: calc(100% / 7);
 }
