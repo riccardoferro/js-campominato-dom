@@ -6,3 +6,5 @@ Creazione clone del gioco "Campo Minato". Lo scopo del gioco è ripulire un camp
 
 #eng 
 Build a clone of the game "Campo minato". The purpose of the game is to clean up a minefield without exploding mines.
+
+https://riccardoferro.github.io/js-campominato-dom/
